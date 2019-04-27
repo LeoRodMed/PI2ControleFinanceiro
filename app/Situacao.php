@@ -5,9 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Professor extends Model
+class Situacao extends Model
 {
-    Use softDeletes;
-    protected $dates = ['deleted-at'];
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table = 'situacoes';
+    //
+    protected $fillable=[
+        'tipo',
+    ];
+    public function parcelas()
+    {
+        return $this->hasMany('App\Parcela');
+    }
 }

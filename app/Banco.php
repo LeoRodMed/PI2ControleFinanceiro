@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Banco extends Model
 {
-    Use softDeletes;
-    protected $dates = ['deleted-at'];
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    //
+    protected $fillable  = [
+      'nome','codigo',
+    ];
+
+    public function conta_bancos()
+    {
+        return $this->hasMany('App\ContaBanco');
+    }
 }

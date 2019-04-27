@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Categoria extends Model
 {
-    Use softDeletes;
-    protected $dates = ['deleted-at'];
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    //
+    protected   $fillable = [
+        'nome',
+
+    ];
+    public function movimentos()
+    {
+        return $this->hasMany('App\Movimento');
+    }
 }

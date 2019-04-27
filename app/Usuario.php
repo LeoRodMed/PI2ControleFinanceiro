@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Usuario extends Model
 {
-    Use softDeletes;
-    protected $dates = ['deleted-at'];
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    //
+    protected $fillable =[
+        'nome','cpf','email','telefone','data_nascimento','senha',
+        ];
+    public function movimentos()
+    {
+        return $this->hasMany('App\Movimento');
+    }
+    public function conta_bancos()
+    {
+        return $this->hasMany('App\ContaBanco');
+    }
 }

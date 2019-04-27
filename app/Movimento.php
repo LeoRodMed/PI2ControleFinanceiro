@@ -7,6 +7,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Movimento extends Model
 {
-    Use softDeletes;
-    protected $dates = ['deleted-at'];
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
+    protected $fillable = [
+        'tipo','valor','descricao','categoria_id','usuario_id',
+    ];
+    public function parcelas()
+    {
+        return $this->hasMany('App\Parcela');
+    }
+    public function categoria() {
+    return $this->belongsTo('App\Categoria');
+}
+    public function usuario() {
+        return $this->belongsTo('App\Usuario');
+    }
+
 }
